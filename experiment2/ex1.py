@@ -1,0 +1,30 @@
+from mininet.net import Mininet
+net = Mininet()
+# Creating nodes in the network.
+c0 = net.addController()
+h1 = net.addHost('h1')
+h2 = net.addHost('h2')
+h3 = net.addHost('h3')
+h4 = net.addHost('h4')
+s1 = net.addSwitch('s1')
+s2 = net.addSwitch('s2')
+s3 = net.addSwitch('s3')
+s4 = net.addSwitch('s4')
+
+# Creating links between nodes in network
+net.addLink(h1, s1)
+net.addLink(h2, s1)
+net.addLink(h3, s4)
+net.addLink(h4, s4)
+net.addLink(s1, s2)
+net.addLink(s1, s3)
+net.addLink(s2, s4)
+net.addLink(s3, s4)
+# Configuration of IP addresses in interfaces
+h1.setIP('192.168.1.1', 24)
+h2.setIP('192.168.1.2', 24)
+h3.setIP('192.168.1.3', 24)
+h4.setIP('192.168.1.4', 24)
+net.start()
+net.pingAll()
+net.stop()
